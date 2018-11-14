@@ -1,4 +1,4 @@
-package com.company;
+package com.Frog;
 
 public class FrogSimulatorRunner {
 

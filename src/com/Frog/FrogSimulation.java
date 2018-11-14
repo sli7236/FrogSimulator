@@ -1,10 +1,18 @@
-package com.company;
+package com.Frog;
 
 public class FrogSimulation {
     private int goalDistance;
     private int maxHops;
     public int nextHopIndex;
     public int[] testHops;
+    int[][] hopSequences =
+            {
+                    {5, 7, -2, 8, 6},
+                    {6, 7, 6, 6},
+                    {6, -6, 31},
+                    {4, 2, -8},
+                    {5, 4, 2, 4, 3}
+            };
 
     public FrogSimulation(int goalDistance, int maxHops) {
         this.goalDistance = goalDistance;
@@ -39,7 +47,15 @@ public class FrogSimulation {
 
     public int hopDistance()
     {
-        return 20;
+        int hops = 0;
+        for (int i = 0; i < hopSequences.length; i++)
+        {
+            for (int x = 0; x < hopSequences[i].length;x++)
+            {
+                hops += hopSequences[i][x];
+            }
+        }
+        return hops;
     }
 
 
