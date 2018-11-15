@@ -1,29 +1,29 @@
 package com.Frog;
 
 public class FrogSimulation {
-    private int goalDistance;
-    private int maxHops;
+    private int dist;
+    private int numHops;
     public int nextHopIndex;
     public int[] testHops;
     int[][] hopSequences =
-            {
-                    {5, 7, -2, 8, 6},
-                    {6, 7, 6, 6},
-                    {6, -6, 31},
-                    {4, 2, -8},
-                    {5, 4, 2, 4, 3}
-            };
+    {
+        {5, 7, -2, 8, 6},
+        {6, 7, 6, 6},
+        {6, -6, 31},
+        {4, 2, -8},
+        {5, 4, 2, 4, 3}
+    };
 
-    public FrogSimulation(int goalDistance, int maxHops) {
-        this.goalDistance = goalDistance;
-        this.maxHops = maxHops;
+    public FrogSimulation(int dist, int numHops) {
+        this.dist = dist;
+        this.numHops = numHops;
     }
 
     public boolean simulate() {
         int position = 0;
-        for (int count = 0; count < maxHops; count++) {
+        for (int count = 0; count < numHops; count++) {
             position += hopDistance();
-            if (position >= goalDistance) {
+            if (position >= dist) {
                 return true;
             } else if (position < 0)
             {
@@ -45,17 +45,14 @@ public class FrogSimulation {
         return (double)countSuccess / num;
     }
 
-    public int hopDistance()
+    private int hopDistance()
     {
-        int hops = 0;
-        for (int i = 0; i < hopSequences.length; i++)
-        {
-            for (int x = 0; x < hopSequences[i].length;x++)
-            {
-                hops += hopSequences[i][x];
-            }
-        }
-        return hops;
+        int hop = testHops[nextHopIndex];
+        nextHopIndex++;
+        if (nextHopIndex >= testHops.length)
+            nextHopIndex = 0;
+
+        return hop;
     }
 
 
